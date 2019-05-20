@@ -1,16 +1,25 @@
-// Create a request variable and assign a new XMLHttpRequest object to it.
+const app = document.getElementById('root')
+
+const logo = document.createElement('img')
+logo.src = 'https://static.guim.co.uk/sys-images/Guardian/Pix/pictures/2010/03/01/poweredbyguardianREV.png'
+
+const container = document.createElement('div')
+container.setAttribute('class', 'container')
+
+app.appendChild(logo)
+app.appendChild(container)
+
 var request = new XMLHttpRequest()
 
-// Open a new connection, using the GET request on the URL endpoint
 request.open('GET', 'https://content.guardianapis.com/search?api-key=468a8f5f-8ab1-4e14-860d-404ef49c71ab', true)
 
 request.onload = function () {
-  // Begin accessing JSON data here
+
   var data = JSON.parse(this.response)
 
 if (request.status >= 200 && request.status < 400) {
   data.response.results.forEach(article => {
-  // Log each section's title
+
   console.log(article.webTitle)
   })
 } else {
