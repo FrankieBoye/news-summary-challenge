@@ -20,7 +20,21 @@ request.onload = function () {
 if (request.status >= 200 && request.status < 400) {
   data.response.results.forEach(article => {
 
-  console.log(article.webTitle)
+    const card = document.createElement('div')
+    card.setAttribute('class', 'card')
+
+    const h1 = document.createElement('h1')
+    h1.textContent = article.webTitle
+
+    const p = document.createElement('p')
+    article.webTitle = article.webTitle.substring(0, 300) // Limit to 300 chars
+    p.textContent = `${article.webTitle}...` // End with an ellipses
+
+    container.appendChild(card)
+
+    card.appendChild(h1)
+    card.appendChild(p)
+
   })
 } else {
   console.log('error')
