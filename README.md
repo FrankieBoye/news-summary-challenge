@@ -140,3 +140,5 @@ If you're interested, you can see the code for the News Summary API in this repo
 1. $ node node_modules/http-server/bin/http-server
 
 2. Visit http://localhost:8080
+
+3. $ ctrl + c to exit
