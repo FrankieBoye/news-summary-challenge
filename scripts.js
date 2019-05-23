@@ -11,9 +11,9 @@ app.appendChild(container)
 
 var request = new XMLHttpRequest()
 
-request.open('GET', 'https://content.guardianapis.com/search?api-key=468a8f5f-8ab1-4e14-860d-404ef49c71ab', true)
+request.open('GET', 'https://content.guardianapis.com/search?api-key=468a8f5f-8ab1-4e14-860d-404ef49c71ab&show-fields=thumbnail', true)
 
-request.onload = function () {
+request.onload = function() {
 
   var data = JSON.parse(this.response)
 
@@ -24,20 +24,31 @@ if (request.status >= 200 && request.status < 400) {
     card.setAttribute('class', 'card')
 
     const h1 = document.createElement('h1')
-    h1.textContent = article.webTitle
+    h1.textContent = article.sectionName
 
-    const p = document.createElement('p')
-    article.webTitle = article.webTitle.substring(0, 300) // Limit to 300 chars
-    p.textContent = `${article.webTitle}...` // End with an ellipses
+    const h2 = document.createElement('h2')
+    h2.textContent = article.webTitle
+
+    const img = document.createElement('img')
+      img.src = article.fields.thumbnail
+
+    const a = document.createElement('a')
+
+    a.href = article.webUrl
+    a.innerHTML = "Click"
 
     container.appendChild(card)
 
     card.appendChild(h1)
-    card.appendChild(p)
+    card.appendChild(h2)
+    card.appendChild(img)
+    card.appendChild(a)
 
   })
 } else {
-  console.log('error')
+  const errorMessage = document.createElement('marquee')
+    errorMessage.textContent = 'Sorry, cannot load...'
+    app.appendChild(errorMessage)
   }
 
 }
