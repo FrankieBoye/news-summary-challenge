@@ -142,3 +142,5 @@ If you're interested, you can see the code for the News Summary API in this repo
 2. Visit http://localhost:8080
 
 3. $ ctrl + c to exit
+
+<img src="screenshots/screenshot.png"/>
